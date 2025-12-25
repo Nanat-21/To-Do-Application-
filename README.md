@@ -137,7 +137,7 @@ This project demonstrates:
 ## 📌 Author
 
 **Nanat Abeshu**
-Frontend Development Student
+**Tsion Tibebe**
 
 ---
 
