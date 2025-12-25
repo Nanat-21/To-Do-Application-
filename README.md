@@ -168,7 +168,7 @@ This project demonstrates:
 
 ## 📌 Author
 
-**Nanat Abeshu**
+**Nanat Abeshu** and
 **Tsion Tibebe**
 
 
