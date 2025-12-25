@@ -14,9 +14,41 @@ A modern **To-Do List web application** built with **HTML, CSS, and JavaScript**
 * ✏️ Edit existing tasks
 * 🗑️ Delete tasks (with confirmation)
 
-### Advanced Feature
+### Advanced Features
 
-* 🔍 **Live Search** (filter tasks instantly by title)
+* 🗂️ **Category Filtering**
+  Tasks can be filtered based on their assigned category (list). Each task contains a `cat` property, and selecting a list from the dropdown filters tasks accordingly.
+
+  **How it works:**
+
+  * Categories are stored in the `customLists` array
+  * Each task is saved with a `cat` field in JSON Server
+  * When a category is selected, tasks are filtered on the client side
+
+  ```js
+  filtered = tasks.filter(t => t.cat === filter && !t.finished);
+  ```
+
+* 🔍 **Live Search**
+  The application includes a live search feature that allows users to search tasks by title in real time.
+
+  **How it works:**
+
+  * User input is captured from the search field
+  * Tasks are filtered dynamically as the user types
+  * Results are immediately rendered without reloading the page
+
+  ```js
+  function runLiveSearch() {
+    const q = document.getElementById('headerSearchInput').value.toLowerCase();
+    const filtered = tasks.filter(t =>
+      t.desc.toLowerCase().includes(q)
+    );
+    renderTaskList(filtered);
+  }
+  ```
+
+  This improves usability by allowing fast task lookup.
 
 ---
 
@@ -139,6 +171,7 @@ This project demonstrates:
 **Nanat Abeshu**
 **Tsion Tibebe**
 
+
 ---
 
 ## ✅ Future Improvements
@@ -149,4 +182,3 @@ This project demonstrates:
 * Authentication
 
 ---
-
