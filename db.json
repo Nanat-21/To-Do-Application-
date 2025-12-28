@@ -1,0 +1,12 @@
+{
+  "todos": [
+    {
+      "id": "da69",
+      "desc": "To Do List Application Project",
+      "longDesc": "To-Do application with a modern interface. All data must be saved, updated, and deleted through JSON Server using real API requests.\n",
+      "cat": "Default",
+      "date": "2025-12-25",
+      "finished": true
+    }
+  ]
+}
