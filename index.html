@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left" id="headerNormalView" onclick="toggleMenu(event)">
+            <img src="to-do list logo.png" alt="logo" class="logo-img">
+            <span id="mainTitle">All Lists</span>
+            <button class="dropdown-btn">▼</button>
+        </div>
+        <div id="searchContainer">
+            <button class="close-header-btn" onclick="resetHeader()">←</button>
+            <input type="text" id="headerSearchInput" class="header-input" placeholder="Search tasks..."
+                oninput="runLiveSearch()">
+        </div>
+        <div id="newListContainer">
+            <button class="close-header-btn" onclick="resetHeader()">←</button>
+            <input type="text" id="newListInput" class="header-input" placeholder="Enter new list name..."
+                onkeypress="handleNewListKey(event)">
+        </div>
+        <ul class="dropdown-menu" id="todoMenu">
+            <li class="all-lists-item" onclick="selectList(this)" data-name="All Lists"><i class="fa fa-home"></i> All
+                Lists</li>
+            <div id="dynamicLists"></div>
+            <li onclick="selectList(this)" data-name="Finished">✔ Finished</li>
+            <li onclick="enableNewListMode()">+ New List</li>
+        </ul>
+        <button class="search-btn" id="searchTrigger" onclick="enableSearchMode()"><i class="fa fa-search"></i></button>
+    </header>
+
+    <main id="taskDisplay"></main>
+
+    <button class="fab fab-add" id="openPlusBtn">+</button>
+
+    <footer>
+        <input type="text" id="quickInput" class="quick-input" placeholder="Enter Quick Task Here">
+    </footer>
+
+    <!-- Rest of your HTML (modals, new task screen, etc.) remains unchanged -->
+    <div id="deleteModal">
+        <div class="confirm-container">
+            <div class="confirm-text">Delete this task?</div>
+            <div class="confirm-btns">
+                <button class="confirm-btn" style="background:#555; color:white;"
+                    onclick="closeDeleteModal()">CANCEL</button>
+                <button class="confirm-btn" style="background:#d32f2f; color:white;"
+                    id="confirmDeleteBtn">DELETE</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="newTaskScreen">
+        <div class="screen-header">
+            <button id="closeBtn"
+                style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">←</button>
+            <span id="screenTitle" style="font-size: 20px; font-weight: bold;">New Task</span>
+        </div>
+        <div class="form-group">
+            <label>What is to be done?</label>
+            <input type="text" id="taskDesc" placeholder="Enter Task Here">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea id="taskLongDesc" placeholder="Add details..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Due date</label>
+            <div onclick="openCalendar()"
+                style="cursor:pointer; display:flex; justify-content:space-between; border-bottom:1px solid #0a6ed3;">
+                <input type="text" id="taskDateDisplay" placeholder="Set Date" readonly
+                    style="border:none; cursor:pointer;">
+                <i class="fa fa-calendar" style="color:#0a6ed3;"></i>
+            </div>
+            <input type="hidden" id="taskDate">
+        </div>
+        <div class="form-group">
+            <label>Add to List</label>
+            <select id="taskCategory"></select>
+        </div>
+        <button class="fab fab-save" id="saveTaskBtn">✓</button>
+    </div>
+
+    <div id="calendarModal">
+        <div class="cal-container">
+            <div class="cal-header">
+                <span id="calYearHeader">2025</span><br>
+                <span id="calDateHeader" style="font-size:20px; font-weight:bold;">Mon, 22 Dec</span>
+            </div>
+            <div style="padding:15px; color: #333;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <i class="fa fa-chevron-left" onclick="changeMonth(-1)" style="cursor:pointer"></i>
+                    <span id="calMonthTitle" style="font-weight:bold;"></span>
+                    <i class="fa fa-chevron-right" onclick="changeMonth(1)" style="cursor:pointer"></i>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:20px; padding:15px;">
+                <button onclick="closeCalendar()"
+                    style="background:none; border:none; color:#0a6ed3; font-weight:bold; cursor:pointer">CANCEL</button>
+                <button onclick="confirmDate()"
+                    style="background:none; border:none; color:#0a6ed3; font-weight:bold; cursor:pointer">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

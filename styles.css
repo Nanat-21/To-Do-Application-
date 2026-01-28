@@ -1,0 +1,372 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #003366;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #0a6ed3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 100;
+  min-height: 50px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+#mainTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+#searchContainer,
+#newListContainer {
+  display: none;
+  flex-grow: 1;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-input {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: white;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-btn,
+.close-header-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 15px;
+  background-color: #0a6ed3;
+  min-width: 220px;
+  border-radius: 0 0 8px 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 200;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu li {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* NEW: Style for "All Lists" - darker background */
+.dropdown-menu li.all-lists-item {
+  background-color: #003366;
+  /* darker like the body */
+}
+
+/* NEW: Indent custom user lists */
+.dropdown-menu li.custom-list-item {
+  padding-left: 50px;
+  /* pushes text to the right */
+}
+
+.show {
+  display: block;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* --- Task Item Styling --- */
+.task-item {
+  background-color: rgba(10, 110, 211, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-info {
+  flex-grow: 1;
+  margin: 0 15px;
+  word-break: break-word;
+}
+
+.task-title {
+  font-weight: bold;
+  font-size: 18px;
+  display: block;
+}
+
+.task-meta {
+  display: block;
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+/* Cross in the middle for finished tasks */
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-item.completed .task-meta {
+  opacity: 0.4;
+}
+
+.task-actions {
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.action-icon:hover {
+  opacity: 1;
+}
+
+.fab {
+  position: fixed;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: white;
+  color: #0a6ed3;
+  border-radius: 50%;
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 90;
+}
+
+.fab-add {
+  bottom: 85px;
+}
+
+footer {
+  background-color: #0a6ed3;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  z-index: 80;
+}
+
+.quick-input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.quick-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#newTaskScreen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: #003366;
+  z-index: 1000;
+  overflow-y: auto;
+  padding-bottom: 100px;
+}
+
+.screen-header {
+  background: #0a6ed3;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.form-group {
+  padding: 15px 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #0a6ed3;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #0a6ed3;
+  color: white;
+  font-size: 18px;
+  padding: 10px 0;
+  outline: none;
+}
+
+.fab-save {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1100;
+}
+
+#deleteModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-container {
+  background: #003366;
+  border: 2px solid #0a6ed3;
+  width: 85%;
+  max-width: 300px;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+}
+
+.confirm-btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.confirm-btn {
+  padding: 10px 25px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#calendarModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-container {
+  background: white;
+  width: 90%;
+  max-width: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #333;
+}
+
+.cal-header {
+  background: #0a6ed3;
+  color: white;
+  padding: 20px;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.day-num {
+  padding: 10px 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.day-num.selected {
+  background: #0a6ed3 !important;
+  color: white !important;
+}
+
+/* ===== FIX SELECT DROPDOWN VISUAL ISSUE ===== */
+
+/* Closed select (what user sees normally) */
+.form-group select {
+  
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+/* Arrow color fix (some browsers) */
+.form-group select option {
+  color: #003366;
+}
+
+
